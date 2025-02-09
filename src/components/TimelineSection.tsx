@@ -2,6 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { format } from 'date-fns';
 import { FaHeart } from 'react-icons/fa';
+import FirstMeet from '../assets/FirstMeetup.png';
+import SunsetKiss from '../assets/SunsetKiss.png';
+import StarryNight from '../assets/StarryNight.png';
+import Heartrain from './HeartRain';
+
 
 interface TimelineEvent {
   image: string;
@@ -12,19 +17,19 @@ interface TimelineEvent {
 
 const timelineData: TimelineEvent[] = [
   {
-    image: 'https://source.unsplash.com/featured/?date,romance',
+    image: FirstMeet,
     caption: 'Our First Magical Meeting',
     date: '2023-02-14',
     description: 'The moment our eyes met, time stood still and our hearts knew.',
   },
   {
-    image: 'https://source.unsplash.com/featured/?sunset,love',
+    image: SunsetKiss,
     caption: 'A Sunset Kiss',
     date: '2023-03-10',
     description: 'As the sun painted the sky, our love painted our future.',
   },
   {
-    image: 'https://source.unsplash.com/featured/?starlight,romance',
+    image: StarryNight,
     caption: 'Under the Stars',
     date: '2023-04-05',
     description: 'Counting stars, making wishes, dreaming together.',
@@ -73,6 +78,7 @@ const TimelineEventCard: React.FC<TimelineEvent & { index: number }> = ({ image,
       transition={{ duration: 0.8, delay: index * 0.2 }}
       className={`relative flex ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center mb-24`}
     >
+
       <motion.div
         whileHover={{ scale: 1.05 }}
         className="relative z-10"
@@ -84,27 +90,36 @@ const TimelineEventCard: React.FC<TimelineEvent & { index: number }> = ({ image,
 
       <motion.div
         whileHover={{ scale: 1.02 }}
-        className={`bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 
-                   ${isEven ? 'ml-8 md:ml-12' : 'mr-8 md:mr-12'} 
-                   flex-1 max-w-xl shadow-xl`}
+        className={`relative overflow-hidden bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6 
+             ${isEven ? 'ml-8 md:ml-12' : 'mr-8 md:mr-12'} 
+             flex-1 max-w-xl shadow-xl`}
       >
-        <div className="relative overflow-hidden rounded-xl mb-4 group">
-          <img
-            src={image}
-            alt={caption}
-            className="w-full h-72 object-cover transform transition-transform group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        {/* Heart rain effect confined to the card */}
+        <div className="absolute inset-0 pointer-events-none">
+          <Heartrain />
         </div>
 
-        <div className="space-y-3">
-          <h3 className="font-dancing text-3xl text-white">{caption}</h3>
-          <p className="font-playfair text-white/80 italic">{description}</p>
-          <p className="text-sm text-white/90 font-semibold">
-            {format(new Date(date), 'MMMM do, yyyy')}
-          </p>
+        {/* Main content placed above the heart rain */}
+        <div className="relative z-10">
+          <div className="overflow-hidden rounded-xl mb-4 group">
+            <img
+              src={image}
+              alt={caption}
+              className="w-full h-72 object-cover transform transition-transform group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-transparent" />
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="font-dancing text-3xl text-white">{caption}</h3>
+            <p className="font-playfair text-white/80 italic">{description}</p>
+            <p className="text-sm text-white/90 font-semibold">
+              {format(new Date(date), 'MMMM do, yyyy')}
+            </p>
+          </div>
         </div>
       </motion.div>
+
     </motion.div>
   );
 };

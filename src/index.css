@@ -345,3 +345,21 @@
   background-image: url(); /* Add your background image URL here */
 }
 
+/* Heart class styles */
+.rain {
+  position: fixed;
+  font-size: 1.5rem;
+  top: -1vh;
+  transform: translateY(0);
+  animation: fall linear forwards;
+}
+
+/* Keyframes for the fall animation */
+@keyframes fall {
+  from {
+    transform: translateY(0vh) translateX(-10vw);
+  }
+  to {
+    transform: translateY(105vh) translateX(10vw);
+  }
+}

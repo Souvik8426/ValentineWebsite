@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'dancing': ['Dancing Script', 'cursive'],
-        'playfair': ['Playfair Display', 'serif'],
+        dancing: ['Dancing Script', 'cursive'],
+        playfair: ['Playfair Display', 'serif'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

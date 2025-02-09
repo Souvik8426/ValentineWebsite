@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import HeroSection from './components/HeroSection';
 import TimelineSection from './components/TimelineSection';
-import FlirtySection from './components/FlirtySection';
+import Proposal from './components/Proposal';
+import Pickup from './components/PickupLine';
 
 const App: React.FC = () => {
   // Track scroll position.
@@ -88,7 +89,8 @@ const App: React.FC = () => {
       <div className="relative z-10 font-sans">
         <HeroSection />
         <TimelineSection />
-        <FlirtySection />
+        <Pickup />
+        <Proposal />
       </div>
     </main>
   );
