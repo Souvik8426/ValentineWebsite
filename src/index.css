@@ -1,0 +1,347 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base heart animation */
+@keyframes heartFloat {
+  0% {
+    transform: translate(0, 0) rotate(45deg) scale(1);
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7));
+  }
+
+  50% {
+    transform: translate(0, -20px) rotate(60deg) scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(255, 192, 203, 0.9));
+  }
+
+  100% {
+    transform: translate(0, 0) rotate(45deg) scale(1);
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.7));
+  }
+}
+
+.heart-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.heart-shape {
+  width: 25px;
+  height: 25px;
+  background: linear-gradient(135deg, #ff6b6b, #ff8585);
+  position: absolute;
+  animation: heartFloat 4s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+.heart-shape::before,
+.heart-shape::after {
+  content: '';
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.heart-shape::before {
+  top: -12.5px;
+  left: 0;
+}
+
+.heart-shape::after {
+  left: -12.5px;
+  top: 0;
+}
+
+/* Size variations */
+.heart-shape:nth-child(3n) {
+  transform: scale(0.7);
+  animation-duration: 3s;
+}
+
+.heart-shape:nth-child(3n+1) {
+  transform: scale(1.2);
+  animation-duration: 5s;
+}
+
+/* Animation timing variations */
+.heart-shape:nth-child(2n) {
+  animation-delay: -1s;
+}
+
+.heart-shape:nth-child(3n) {
+  animation-delay: -2s;
+}
+
+.heart-shape:nth-child(5n) {
+  animation-delay: -3s;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart {
+  perspective: 1000px;
+  width: 100px;
+  height: 100px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: 100%;
+    left: 10%;
+    bottom: -20%;
+    width: 80%;
+    height: 20%;
+    background-color: hsl(334deg 40% 50% / 40%);
+    filter: blur(5px);
+    transform: scale(var(--scale));
+  }
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .inner-wrapper {
+    width: 100%;
+    height: 100%;
+    transform: scale(var(--scale));
+    transition: 0.1s ease-out;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .splash {
+    width: 100%;
+    height: 100%;
+
+    path {
+      stroke: hsl(334deg 60% 80%);
+      stroke-width: 0;
+      fill: none;
+      transform-origin: center;
+      animation-timing-function: linear;
+      animation-duration: 0.5s;
+      animation-name: splash;
+    }
+  }
+
+  .heart-stroke {
+    fill: none;
+    stroke: rgba(white, 1);
+    stroke-width: 20px;
+    stroke-dasharray: 300 1206;
+    stroke-linecap: round;
+  }
+
+  .heart-layer {
+    transition: fill 0.3s ease-out;
+    fill: hsl(334deg var(--lightness) 50%);
+    stroke: hsl(334deg var(--lightness) 35%);
+    stroke-width: 10px;
+  }
+
+  .heart-shine {
+    filter: blur(3px);
+  }
+}
+
+@keyframes splash {
+  0% {
+    transform: scale(0.5);
+    stroke-width: 10;
+  }
+
+  50% {
+    transform: scale(1.5);
+    stroke-width: 100;
+  }
+
+  100% {
+    transform: scale(2.5);
+    stroke-width: 1;
+  }
+}
+
+.broken-heart {
+  perspective: 1000px;
+  width: 100px;
+  height: 100px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: 100%;
+    left: 10%;
+    bottom: -20%;
+    width: 80%;
+    height: 20%;
+    background-color: hsl(334deg 40% 50% / 40%);
+    filter: blur(5px);
+    transform: scale(var(--scale));
+  }
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    transition: transform 0.3s ease-out;
+  }
+
+  &.is-broken {
+
+    .heart-layer,
+    .heart-stroke {
+      path:first-child {
+        animation: break-left 0.4s ease-out forwards;
+      }
+
+      path:last-child {
+        animation: break-right 0.4s ease-out forwards;
+      }
+    }
+  }
+
+  .inner-wrapper {
+    width: 100%;
+    height: 100%;
+    transform: scale(var(--scale));
+    transition: 0.1s ease-out;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .heart-stroke {
+    fill: none;
+    stroke: rgba(white, 1);
+    stroke-width: 20px;
+    stroke-dasharray: 300 1206;
+    stroke-linecap: round;
+  }
+
+  .heart-layer {
+    transition: fill 0.3s ease-out;
+    fill: hsl(334deg var(--lightness) 50%);
+    stroke: hsl(334deg var(--lightness) 35%);
+    stroke-width: 10px;
+  }
+
+  .heart-shine {
+    filter: blur(3px);
+  }
+}
+
+@keyframes break-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-20px) rotate(-10deg);
+  }
+}
+
+@keyframes break-right {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(20px) rotate(10deg);
+  }
+}
+
+
+/* well Anjali is my crush soo and i didnt get any other class name in my mind soo ye  */
+.anjali svg {
+  max-width: 600px;
+  margin: auto;
+  display: block;
+}
+
+.anjali svg * {
+  transform-box: fill-box;
+}
+
+.anjali .line {
+  fill: none;
+  stroke: #a08970;
+  stroke-miterlimit: 10;
+  stroke-width: 2px;
+  stroke-dasharray: 1920;
+  stroke-dashoffset: 1920;
+}
+
+.anjali.visible .line {
+  animation: 3s line-draw cubic-bezier(.5,.3,.5,1) forwards;
+}
+
+.anjali .heart {
+  fill: #f8a1a1;
+  stroke-width: 0;
+  opacity: 0;
+  scale: .5;
+  transform-origin: 50% 50%;
+}
+
+.anjali.visible .heart--is-large {
+  animation: 1s heart-grow 1.33s cubic-bezier(.5,.3,.1,1) forwards;
+}
+
+.anjali.visible .heart--is-small {
+  animation: .75s heart-grow 1.66s cubic-bezier(.3,.3,.2,1) forwards;
+}
+
+
+@keyframes line-draw {
+  100% { 
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes heart-grow {
+  100% { 
+    opacity: .5;
+    scale: 1;
+  }
+}
+
+.anjali .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 50%;
+  pointer-events: none;
+  background-image: url(); /* Add your background image URL here */
+}
+
