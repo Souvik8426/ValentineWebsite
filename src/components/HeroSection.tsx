@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
-import { FaHeart, FaChevronDown } from 'react-icons/fa';
+import { FaChevronDown } from 'react-icons/fa';
 import HeartAnimation from './HeartAnimation';
 
 
@@ -14,12 +13,10 @@ const HeroSection: React.FC = () => {
 
   return (
     <>
-      <Head>
         <link
           href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
           rel="stylesheet"
         />
-      </Head>
 
       <section
         className="relative flex items-center justify-center min-h-screen bg-cover bg-center overflow-hidden"
