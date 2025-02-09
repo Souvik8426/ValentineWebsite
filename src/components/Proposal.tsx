@@ -39,6 +39,7 @@ const FlirtySection = () => {
     return images.default;
   };
 
+
   const handleNoClick = () => {
     // Use the functional update form so we work with the latest state.
     setNoCount((prev) => {
@@ -73,7 +74,7 @@ const FlirtySection = () => {
           <div className="absolute inset-0 pointer-events-none">
             <Heartrain />
           </div>
-  
+
           <motion.div
             className="mb-12"
             initial={{ opacity: 0, y: 20 }}
@@ -89,7 +90,7 @@ const FlirtySection = () => {
               transition={{ duration: 0.3 }}
             />
           </motion.div>
-  
+
           {!yesPressed ? (
             <div className="mt-12 flex flex-col items-center">
               <motion.p
@@ -99,7 +100,7 @@ const FlirtySection = () => {
               >
                 {questions[Math.min(noCount, questions.length - 1)]}
               </motion.p>
-  
+
               <div className="flex justify-center items-center gap-12 min-h-[250px]">
                 <motion.div
                   className="p-8"
@@ -109,14 +110,15 @@ const FlirtySection = () => {
                 >
                   <Heart />
                 </motion.div>
-  
+
                 <motion.button
                   className="p-8 rounded-full"
                   style={{
                     position: noCount >= 3 ? 'absolute' : 'relative',
-                    left: noButtonPosition.x,
-                    top: noButtonPosition.y,
-                    background: 'none'
+                    left: noCount >= 3 ? `${Math.random() * 80}%` : undefined,
+                    top: noCount >= 3 ? `${Math.random() * 80}%` : undefined,
+                    background: 'none',
+                    transform: 'translate(-50%, -50%)'
                   }}
                   whileHover={{ scale: 1.1 }}
                   onClick={handleNoClick}
@@ -136,13 +138,18 @@ const FlirtySection = () => {
           )}
         </motion.div>
       </div>
-  
+
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="stars absolute w-full h-full"></div>
       </div>
+      <div class="credits text-white text-center mt-4">
+        <p>
+          Credits: <a href="https://github.com/souvik8426" target="_blank" rel="noopener noreferrer">Souvik Ruhidas</a>
+        </p>
+      </div>
     </section>
   );
-  
+
 };
 
 export default FlirtySection;
