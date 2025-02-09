@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Heartrain from './HeartRain';
+import HeartLoader from './HeartLoader';
+
 
 const flirtyLines: string[] = [
   "Every glance from you is a spark that ignites my soul.",
@@ -37,13 +39,18 @@ const FlirtySection: React.FC = () => {
           className="relative bg-white/10 backdrop-blur-md p-12 rounded-3xl border border-white/20 shadow-xl w-full max-w-3xl mx-auto overflow-hidden"
           whileHover={{ scale: 1.02 }}
         >
-          {/* Ensure the Heartrain effect is confined within this card */}
+          {/* Heartrain background */}
           <div className="absolute inset-0 pointer-events-none">
             <Heartrain />
           </div>
 
-          {/* Content rendered above the heart rain (using z-10) */}
+          {/* Content with HeartLoader and text */}
           <div className="relative flex flex-col items-center z-10">
+            {/* HeartLoader positioned above the text */}
+            <div className="h-[200px] w-full relative mb-8">
+              <HeartLoader />
+            </div>
+
             <AnimatePresence>
               <motion.p
                 key={line}
@@ -68,7 +75,7 @@ const FlirtySection: React.FC = () => {
         </motion.div>
       </div>
     </section>
-  );
+  );  
 };
 
 export default FlirtySection;
