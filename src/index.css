@@ -363,3 +363,29 @@
     transform: translateY(105vh) translateX(10vw);
   }
 }
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffe6ea;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffb6c1;
+  border-radius: 8px;
+  border: 3px solid #ffe6ea;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff99a8;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ffb6c1 #ffe6ea;
+}
